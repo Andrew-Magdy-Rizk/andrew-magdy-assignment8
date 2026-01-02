@@ -13,6 +13,9 @@ header li:hover i, header li:hover span  {
     color: #FF5E00;
 }
 
+header nav p  {
+    font-size: 12px !important;
+}
 /* End Header */
 
 /* Start Main */
