@@ -121,6 +121,20 @@ main .list-group-item::before{
     font-size: 12px;
 }
 
+main #card .description {
+    padding: 12px !important;
+    gap: 5px !important;
+}
+
+main .description{
+    width: 85%;
+}
+
+main button a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* End Main */
 
 @media (min-width: 992px) {
@@ -130,10 +144,15 @@ main .list-group-item::before{
 
     main .description {
         bottom: 28px;
-        width: 85%;
     }
 
     main .card {
     height: 750px;
     }
+
+
+    main #card .description {
+    padding: 22px !important;
+    gap: 16px !important;
+}
 }

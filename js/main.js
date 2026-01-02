@@ -480,8 +480,14 @@ var productList = [
 
 
 getRondomProduct();
-function getRondomProduct() {
+
+function getRondomProduct(id) {
     var product = productList[Math.floor(Math.random() * productList.length)];
+    
+    while (product.id === id) {
+        
+        product = productList[Math.floor(Math.random() * productList.length)];
+    }
 
     displayProduct(product);
 }
@@ -574,25 +580,25 @@ function displayProduct(product) {
                 </div>
                 ${warningMsg(product.warning)}
                 <div>
-                    <ul class="nav nav-tabs mb-3 border-0" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
+                    <ul class="nav nav-tabs mb-3 border-0 row" id="myTab" role="tablist">
+                        <li class="nav-item col-3" role="presentation">
                             <button class="nav-link active border-0 fw-bold" id="ingredients-tab" data-bs-toggle="tab"
                                 data-bs-target="#ingredients" type="button" role="tab" aria-controls="ingredients"
                                 aria-selected="true"><i
                                     class="fa-solid fa-list-check fa-xs me-1"></i>Ingredients</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item col-3" role="presentation">
                             <button class="nav-link border-0 fw-bold" id="instructions-tab" data-bs-toggle="tab"
                                 data-bs-target="#instructions" type="button" role="tab" aria-controls="instructions"
                                 aria-selected="false"><i
                                     class="fa-solid fa-book-open fa-xs me-1"></i>Instructions</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item col-3" role="presentation">
                             <button class="nav-link border-0 fw-bold" id="nutrition-tab" data-bs-toggle="tab"
                                 data-bs-target="#nutrition" type="button" role="tab" aria-controls="nutrition"
                                 aria-selected="false"><i class="fa-solid fa-chart-pie fa-xs me-1"></i>Nutrition</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item col-3" role="presentation">
                             <button class="nav-link border-0 fw-bold" id="chef-tips-tab" data-bs-toggle="tab"
                                 data-bs-target="#chef-tips" type="button" role="tab" aria-controls="chef-tips"
                                 aria-selected="false"><i class="fa-solid fa-lightbulb fa-xs me-1"></i>Chef's
@@ -731,8 +737,8 @@ function displayProduct(product) {
                     </div>
                 </div>
                 <div class="pt-3">
-                    <button type="button" onclick="getRondomProduct()" class="btn bg-primary bg-gradient text-white fw-bold py-3 px-4 rounded-4"><i
-                            class="fa-solid fa-arrows-rotate fa-lg me-2"></i>Try Another Recipe</button>
+                    <button type="button" onclick="getRondomProduct(${product.id})" class="btn bg-primary bg-gradient text-white fw-bold py-3 px-4 rounded-4"><i
+                            class="fa-solid fa-arrows-rotate fa-lg me-2"></i><a href="#" class="">Try Another Recipe</a></button>
                 </div>
             </div>
         </div>
