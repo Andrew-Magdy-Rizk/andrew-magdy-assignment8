@@ -4,12 +4,12 @@ header img {
     height: 40px !important;
 }
 
-header li i {
+header li i, header li span  {
     transition: color .2s;
     cursor: pointer;
 }
 
-header li:hover i {
+header li:hover i, header li:hover span  {
     color: #FF5E00;
 }
 

@@ -1,5 +1,8 @@
 var cardContainer = window.document.getElementById("main");
 
+var currentActiveTab = "ingredients";
+
+
 
 
 
@@ -481,11 +484,23 @@ var productList = [
 
 getRondomProduct();
 
+function changeProduct(id) {
+    var activeTabBtn = document.querySelector(
+        '#myTab .nav-link.active'
+    );
+
+    if (activeTabBtn) {
+        currentActiveTab = activeTabBtn.getAttribute("data-bs-target").replace("#", "");
+    }
+
+    getRondomProduct(id);
+}
+
 function getRondomProduct(id) {
     var product = productList[Math.floor(Math.random() * productList.length)];
-    
+
     while (product.id === id) {
-        
+
         product = productList[Math.floor(Math.random() * productList.length)];
     }
 
@@ -525,13 +540,16 @@ function addIngredients(ingredients) {
 
 }
 
+
+
+
 function displayProduct(product) {
     var box = `
      <div id="card"
             class="container-fluid container-lg card m-0 flex-grow-1 w-100 flex-lg-row rounded-4 overflow-hidden p-0 shadow">
             <div class="pref position-relative col-lg-5">
                 <img src=${product.image.src} alt=${product.image.alt} class="w-100 h-100 object-fit-cover">
-                <div class="rate bg-white position-absolute rounded-pill px-3 py-2"><i
+                <div class="rate bg-white position-absolute rounded-pill px-3 py-2 shadow"><i
                         class="fa-solid fa-star text-warning me-2"></i> <span class="fw-bold">${product.rating.value}</span> <span
                         class="text-body-secondary">(${product.rating.reviews}
                         reviews)</span></div>
@@ -737,12 +755,23 @@ function displayProduct(product) {
                     </div>
                 </div>
                 <div class="pt-3">
-                    <button type="button" onclick="getRondomProduct(${product.id})" class="btn bg-primary bg-gradient text-white fw-bold py-3 px-4 rounded-4"><i
+                    <button type="button" onclick="changeProduct(${product.id})" class="btn bg-primary bg-gradient text-white fw-bold py-3 px-4 rounded-4"><i
                             class="fa-solid fa-arrows-rotate fa-lg me-2"></i><a href="#" class="">Try Another Recipe</a></button>
                 </div>
             </div>
         </div>
     `
+
+    setTimeout(() => {
+    var tabBtn = document.querySelector(
+        `button[data-bs-target="#${currentActiveTab}"]`
+    );
+
+    if (tabBtn) {
+        new bootstrap.Tab(tabBtn).show();
+    }
+}, 0);
+
 
 
     cardContainer.innerHTML = box;
